@@ -31,7 +31,7 @@
     ```bash
     npm install
 
-3. **Создать файл **`.env`** **:
+3. **Создать файл `.env`**:
     ```bash
     DB_HOST=localhost
     DB_USER=root
