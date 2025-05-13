@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import * as requestService from '../services/requestService';
 
-// Создать обращение
 export const createRequest = async (req: Request, res: Response) => {
   const { subject, text } = req.body;
   try {
@@ -16,7 +15,6 @@ export const createRequest = async (req: Request, res: Response) => {
   }
 };
 
-// Взять обращение в работу
 export const startWork = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -31,7 +29,6 @@ export const startWork = async (req: Request, res: Response) => {
   }
 };
 
-// Завершить обработку обращения
 export const completeRequest = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { solution } = req.body;
@@ -47,7 +44,6 @@ export const completeRequest = async (req: Request, res: Response) => {
   }
 };
 
-// Отменить обращение
 export const cancelRequest = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { reason } = req.body;
@@ -63,7 +59,6 @@ export const cancelRequest = async (req: Request, res: Response) => {
   }
 };
 
-// Получить список обращений
 export const getRequests = async (req: Request, res: Response) => {
   const { startDate, endDate } = req.query;
   try {
@@ -78,7 +73,6 @@ export const getRequests = async (req: Request, res: Response) => {
   }
 };
 
-// Отменить все обращения в статусе "в работе"
 export const cancelInProgressRequests = async (req: Request, res: Response) => {
   try {
     const canceledRequests = await requestService.cancelInProgressRequests();
@@ -92,7 +86,6 @@ export const cancelInProgressRequests = async (req: Request, res: Response) => {
   }
 };
 
-// Получить все незакрытые обращения
 export const getOpenRequests = async (req: Request, res: Response) => {
   try {
     const requests = await requestService.getOpenRequests();

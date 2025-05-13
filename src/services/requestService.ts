@@ -1,7 +1,6 @@
 import Request from '../models/requestModel';
 import { Op } from 'sequelize';  // Объект для работы с операциями
 
-// Создание нового обращения
 export const createRequest = async (subject: string, text: string) => {
   const newRequest = await Request.create({
     subject,
@@ -11,7 +10,6 @@ export const createRequest = async (subject: string, text: string) => {
   return newRequest;
 };
 
-// Начать работу с обращением
 export const startWork = async (id: string) => {
   const request = await Request.findByPk(id);
   if (!request) {
@@ -22,7 +20,6 @@ export const startWork = async (id: string) => {
   return request;
 };
 
-// Завершить обращение
 export const completeRequest = async (id: string, solution: string) => {
   const request = await Request.findByPk(id);
   if (!request) {
@@ -34,7 +31,6 @@ export const completeRequest = async (id: string, solution: string) => {
   return request;
 };
 
-// Отменить обращение
 export const cancelRequest = async (id: string, reason: string) => {
   const request = await Request.findByPk(id);
   if (!request) {
@@ -46,7 +42,6 @@ export const cancelRequest = async (id: string, reason: string) => {
   return request;
 };
 
-// Получить список обращений с фильтрацией по датам
 export const getRequests = async (startDate?: string, endDate?: string) => {
   const where: any = {};
 
@@ -60,7 +55,6 @@ export const getRequests = async (startDate?: string, endDate?: string) => {
   return requests;
 };
 
-// Отменить все обращения в статусе "в работе"
 export const cancelInProgressRequests = async () => {
   const requests = await Request.findAll({
     where: {
@@ -76,12 +70,11 @@ export const cancelInProgressRequests = async () => {
   return requests;
 };
 
-// Получить все незакрытые обращения
 export const getOpenRequests = async () => {
   const requests = await Request.findAll({
     where: {
       status: {
-        [Op.notIn]: ['completed', 'canceled'],  // Используем Op.notIn для фильтрации
+        [Op.notIn]: ['completed', 'canceled'],
       },
     },
   });
