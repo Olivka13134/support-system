@@ -1,6 +1,12 @@
 import { Request, Response } from 'express';
 import * as requestService from '../services/requestService';
 
+/**
+ * Обрабатывает создание нового обращения.
+ * 
+ * @param req - Запрос от клиента.
+ * @param res - Ответ для клиента.
+ */
 export const createRequest = async (req: Request, res: Response) => {
   const { subject, text } = req.body;
   try {
@@ -15,6 +21,12 @@ export const createRequest = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Обрабатывает запрос на начало работы с обращением.
+ * 
+ * @param req - Запрос от клиента.
+ * @param res - Ответ для клиента.
+ */
 export const startWork = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -29,6 +41,12 @@ export const startWork = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Обрабатывает запрос на завершение обращения.
+ * 
+ * @param req - Запрос от клиента.
+ * @param res - Ответ для клиента.
+ */
 export const completeRequest = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { solution } = req.body;
@@ -44,6 +62,12 @@ export const completeRequest = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Обрабатывает запрос на отмену обращения.
+ * 
+ * @param req - Запрос от клиента.
+ * @param res - Ответ для клиента.
+ */
 export const cancelRequest = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { reason } = req.body;
@@ -59,6 +83,13 @@ export const cancelRequest = async (req: Request, res: Response) => {
   }
 };
 
+
+/**
+ * Обрабатывает запрос на получение списка обращений с возможностью фильтрации по датам.
+ * 
+ * @param req - Запрос от клиента.
+ * @param res - Ответ для клиента.
+ */
 export const getRequests = async (req: Request, res: Response) => {
   const { startDate, endDate } = req.query;
   try {
@@ -72,6 +103,7 @@ export const getRequests = async (req: Request, res: Response) => {
     }
   }
 };
+
 
 export const cancelInProgressRequests = async (req: Request, res: Response) => {
   try {
