@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import requestRoutes from './routes/requestRoutes';
+import requestRoutes from './routes/request.routes';
 import { sequelize } from './database/index';
 import { config } from './config';
 

@@ -1,6 +1,6 @@
 import Request from '../database/models/ticket.model';
 import { Op } from 'sequelize';  // Объект для работы с операциями
-import { AppealStatus } from '../enums/statusEnum';
+import { AppealStatus } from '../enums/appeal-status.enum';
 
 
 /**

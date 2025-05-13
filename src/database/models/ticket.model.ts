@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../index';
-import { AppealStatus } from '../../enums/statusEnum'; 
+import { AppealStatus } from '../../enums/appeal-status.enum'; 
 
 
 /**
