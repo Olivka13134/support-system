@@ -1,9 +1,7 @@
 import dotenv from 'dotenv';
 
-// Загружаем переменные окружения из файла .env
 dotenv.config();
 
-// Теперь можно использовать process.env для доступа к переменным окружения
 export const config = {
   db: {
     host: process.env.DB_HOST || 'localhost',

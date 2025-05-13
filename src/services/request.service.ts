@@ -1,6 +1,6 @@
-import Request from '../models/requestModel';
+import Request from '../database/models/ticket.model';
 import { Op } from 'sequelize';  // Объект для работы с операциями
-import { Status } from '../models/statusEnum';
+import { AppealStatus } from '../enums/statusEnum';
 
 
 /**
@@ -14,7 +14,7 @@ export const createRequest = async (subject: string, text: string) => {
   const newRequest = await Request.create({
     subject,
     text,
-    status: Status.NEW,
+    status: AppealStatus.NEW,
   });
   return newRequest;
 };
@@ -30,7 +30,7 @@ export const startWork = async (id: string) => {
   if (!request) {
     throw new Error('Request not found');
   }
-  request.status = Status.IN_PROGRESS;
+  request.status = AppealStatus.IN_PROGRESS;
   await request.save();
   return request;
 };
@@ -48,7 +48,7 @@ export const completeRequest = async (id: string, solution: string) => {
   if (!request) {
     throw new Error('Request not found');
   }
-  request.status = Status.CANCELED;
+  request.status = AppealStatus.CANCELED;
   request.solution = solution;
   await request.save();
   return request;
@@ -67,7 +67,7 @@ export const cancelRequest = async (id: string, reason: string) => {
   if (!request) {
     throw new Error('Request not found');
   }
-  request.status = Status.CANCELED;
+  request.status = AppealStatus.CANCELED;
   request.cancelReason = reason;
   await request.save();
   return request;
@@ -101,7 +101,7 @@ export const cancelInProgressRequests = async () => {
   });
 
   requests.forEach(async (request) => {
-    request.status = Status.CANCELED;
+    request.status = AppealStatus.CANCELED;
     await request.save();
   });
 

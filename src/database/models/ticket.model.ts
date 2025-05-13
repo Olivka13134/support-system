@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
-import { sequelize } from '../database';
-import { Status } from './statusEnum'; 
+import { sequelize } from '../index';
+import { AppealStatus } from '../../enums/statusEnum'; 
 
 
 /**
@@ -18,7 +18,7 @@ class Request extends Model {
   public id!: number;
   public subject!: string;
   public text!: string;
-  public status!: Status;
+  public status!: AppealStatus;
   public solution?: string;
   public cancelReason?: string;
   public createdAt!: Date;
@@ -36,8 +36,8 @@ Request.init(
       allowNull: false,
     },
     status: {
-      type: DataTypes.ENUM(Status.NEW, Status.IN_PROGRESS, Status.COMPLETED, Status.CANCELED),
-      defaultValue: Status.NEW,
+      type: DataTypes.ENUM(AppealStatus.NEW, AppealStatus.IN_PROGRESS, AppealStatus.COMPLETED, AppealStatus.CANCELED),
+      defaultValue: AppealStatus.NEW,
       allowNull: false,
     },
     solution: {

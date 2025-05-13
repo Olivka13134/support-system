@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as requestService from '../services/requestService';
+import * as requestService from '../services/request.service';
 
 /**
  * Обрабатывает создание нового обращения.

@@ -1,7 +1,4 @@
-/**
- * Enum для статусов обращения.
- */
-export enum Status {
+export enum AppealStatus {
   NEW = 'new',
   IN_PROGRESS = 'in_progress',
   COMPLETED = 'completed',
